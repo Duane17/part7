@@ -49,4 +49,12 @@ const addComment = async (id, comment) => {
   return response.data;
 };
 
-export default { getAll, getBlog, create, update, remove, setToken, addComment };
+export default {
+  getAll,
+  getBlog,
+  create,
+  update,
+  remove,
+  setToken,
+  addComment,
+};

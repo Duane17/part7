@@ -1,26 +1,29 @@
-import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { useBlogContext } from '../contexts/BlogContext';
-import useBlogs from '../hooks/useBlogs';
-import { useUserContext } from '../contexts/UserContext';
-import blogService from '../services/blog';
+import React, { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { useBlogContext } from "../contexts/BlogContext";
+import useBlogs from "../hooks/useBlogs";
+import { useUserContext } from "../contexts/UserContext";
+import blogService from "../services/blog";
 
 const BlogDetails = () => {
-  const [comment, setComment] = useState('');
+  const [comment, setComment] = useState("");
   const { id } = useParams();
   const navigate = useNavigate();
-  const { state: { blog, isLoading, error }, dispatch } = useBlogContext();
+  const {
+    state: { blog, isLoading, error },
+    dispatch,
+  } = useBlogContext();
   const { updateLikes, deleteBlog } = useBlogs();
   const { state: user } = useUserContext();
 
   useEffect(() => {
     const fetchBlog = async () => {
-      dispatch({ type: 'SET_LOADING', payload: true });
+      dispatch({ type: "SET_LOADING", payload: true });
       try {
         const fetchedBlog = await blogService.getBlog(id);
-        dispatch({ type: 'SET_BLOG', payload: fetchedBlog });
+        dispatch({ type: "SET_BLOG", payload: fetchedBlog });
       } catch (error) {
-        dispatch({ type: 'SET_ERROR', payload: 'Error fetching blog' });
+        dispatch({ type: "SET_ERROR", payload: "Error fetching blog" });
       }
     };
     fetchBlog();
@@ -28,7 +31,7 @@ const BlogDetails = () => {
 
   useEffect(() => {
     if (!user) {
-      navigate('/');
+      navigate("/");
     }
   }, [user, navigate]);
 
@@ -36,10 +39,10 @@ const BlogDetails = () => {
     event.preventDefault();
     try {
       await blogService.addComment(id, comment);
-      dispatch({ type: 'ADD_COMMENT', payload: comment });
-      setComment('');
+      dispatch({ type: "ADD_COMMENT", payload: comment });
+      setComment("");
     } catch (error) {
-      console.error('Error adding comment:', error);
+      console.error("Error adding comment:", error);
     }
   };
 
@@ -50,14 +53,14 @@ const BlogDetails = () => {
         likes: blog.likes + 1,
       };
       await updateLikes(id, updatedBlog);
-      dispatch({ type: 'UPDATE_LIKES', payload: updatedBlog.likes });
+      dispatch({ type: "UPDATE_LIKES", payload: updatedBlog.likes });
     }
   };
 
   const handleDelete = async () => {
     if (blog) {
       await deleteBlog(blog);
-      navigate('/blogs');
+      navigate("/blogs");
     }
   };
 
@@ -73,18 +76,30 @@ const BlogDetails = () => {
           <h2 className="card-title">{blog.title}</h2>
           <h6 className="card-subtitle mb-2 text-muted">by {blog.author}</h6>
           <p className="card-text">
-            <a href={blog.url} target="_blank" rel="noopener noreferrer" className="text-decoration-none">
+            <a
+              href={blog.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-decoration-none"
+            >
               {blog.url}
             </a>
           </p>
           <p className="card-text">
-            {blog.likes} likes 
+            {blog.likes} likes
             <br />
-            <button onClick={handleLike} className="btn btn-outline-primary btn-sm ms-2">Like</button>
+            <button
+              onClick={handleLike}
+              className="btn btn-outline-primary btn-sm ms-2"
+            >
+              Like
+            </button>
           </p>
           <p className="card-text">Added by {blog.user.name}</p>
           {blog.user && user && blog.user.username === user.username && (
-            <button onClick={handleDelete} className="btn btn-danger mb-3">Remove</button>
+            <button onClick={handleDelete} className="btn btn-danger mb-3">
+              Remove
+            </button>
           )}
 
           <h3 className="mt-4">Comments</h3>
@@ -97,13 +112,17 @@ const BlogDetails = () => {
                 onChange={({ target }) => setComment(target.value)}
                 placeholder="Write a comment..."
               />
-              <button type="submit" className="btn btn-primary">Add comment</button>
+              <button type="submit" className="btn btn-primary">
+                Add comment
+              </button>
             </div>
           </form>
           {blog.comments.length > 0 ? (
             <ul className="list-group">
               {blog.comments.map((comment, index) => (
-                <li key={index} className="list-group-item">{comment}</li>
+                <li key={index} className="list-group-item">
+                  {comment}
+                </li>
               ))}
             </ul>
           ) : (

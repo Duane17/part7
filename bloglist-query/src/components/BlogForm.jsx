@@ -24,7 +24,9 @@ const BlogForm = ({ createBlog }) => {
         <h3 className="card-title text-center mb-4">Create New Blog</h3>
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
-            <label htmlFor="title" className="form-label">Title:</label>
+            <label htmlFor="title" className="form-label">
+              Title:
+            </label>
             <input
               type="text"
               className="form-control"
@@ -36,7 +38,9 @@ const BlogForm = ({ createBlog }) => {
             />
           </div>
           <div className="mb-3">
-            <label htmlFor="author" className="form-label">Author:</label>
+            <label htmlFor="author" className="form-label">
+              Author:
+            </label>
             <input
               type="text"
               className="form-control"
@@ -48,7 +52,9 @@ const BlogForm = ({ createBlog }) => {
             />
           </div>
           <div className="mb-3">
-            <label htmlFor="url" className="form-label">URL:</label>
+            <label htmlFor="url" className="form-label">
+              URL:
+            </label>
             <input
               type="url"
               className="form-control"
@@ -59,7 +65,9 @@ const BlogForm = ({ createBlog }) => {
               required
             />
           </div>
-          <button type="submit" className="btn btn-primary w-100">Create</button>
+          <button type="submit" className="btn btn-primary w-100">
+            Create
+          </button>
         </form>
       </div>
     </div>

@@ -1,13 +1,13 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Notification from './components/Notification';
-import Users from './components/Users';
-import Home from './components/Home';
-import Blogs from './components/Blogs';
-import UserDetails from './components/UserDetails';
-import BlogDetails from './components/BlogDetails';
-import Navbar from './components/Navbar';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Notification from "./components/Notification";
+import Users from "./components/Users";
+import Home from "./components/Home";
+import Blogs from "./components/Blogs";
+import UserDetails from "./components/UserDetails";
+import BlogDetails from "./components/BlogDetails";
+import Navbar from "./components/Navbar";
+import "./App.css";
 
 const App = () => {
   return (

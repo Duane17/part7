@@ -92,48 +92,47 @@ const useBlogs = () => {
     },
   });
 
-const addCommentMutation = useMutation({
-  mutationFn: ({ id, comment }) => blogService.addComment(id, comment),
-  onSuccess: (updatedBlog) => {
-    queryClient.setQueryData(["blogs", updatedBlog.id], updatedBlog);
-    queryClient.invalidateQueries(["blogs"]);
-    dispatch({
-      type: "SET_NOTIFICATION",
-      payload: { message: "Comment added successfully", type: "success" },
-    });
-    setTimeout(() => {
-      dispatch({ type: "CLEAR_NOTIFICATION" });
-    }, 5000);
-  },
-  onError: () => {
-    dispatch({
-      type: "SET_NOTIFICATION",
-      payload: { message: "Error adding comment", type: "error" },
-    });
-    setTimeout(() => {
-      dispatch({ type: "CLEAR_NOTIFICATION" });
-    }, 5000);
-  },
-});
+  const addCommentMutation = useMutation({
+    mutationFn: ({ id, comment }) => blogService.addComment(id, comment),
+    onSuccess: (updatedBlog) => {
+      queryClient.setQueryData(["blogs", updatedBlog.id], updatedBlog);
+      queryClient.invalidateQueries(["blogs"]);
+      dispatch({
+        type: "SET_NOTIFICATION",
+        payload: { message: "Comment added successfully", type: "success" },
+      });
+      setTimeout(() => {
+        dispatch({ type: "CLEAR_NOTIFICATION" });
+      }, 5000);
+    },
+    onError: () => {
+      dispatch({
+        type: "SET_NOTIFICATION",
+        payload: { message: "Error adding comment", type: "error" },
+      });
+      setTimeout(() => {
+        dispatch({ type: "CLEAR_NOTIFICATION" });
+      }, 5000);
+    },
+  });
 
+  const addBlog = async (blogObject) => {
+    addBlogMutation.mutate(blogObject);
+  };
 
-const addBlog = async (blogObject) => {
-  addBlogMutation.mutate(blogObject);
-};
+  const updateLikes = async (id, updatedBlog) => {
+    updateBlogMutation.mutate({ id, updatedBlog });
+  };
 
-const updateLikes = async (id, updatedBlog) => {
-  updateBlogMutation.mutate({ id, updatedBlog });
-};
+  const deleteBlog = async (blog) => {
+    if (window.confirm(`Remove blog ${blog.title} by ${blog.author}?`)) {
+      deleteBlogMutation.mutate(blog.id);
+    }
+  };
 
-const deleteBlog = async (blog) => {
-  if (window.confirm(`Remove blog ${blog.title} by ${blog.author}?`)) {
-    deleteBlogMutation.mutate(blog.id);
-  }
-};
-
-const addComment = async (id, comment) => {
-  return addCommentMutation.mutateAsync({ id, comment });
-};
+  const addComment = async (id, comment) => {
+    return addCommentMutation.mutateAsync({ id, comment });
+  };
 
   return { blogs, isLoading, addBlog, updateLikes, deleteBlog, addComment };
 };

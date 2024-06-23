@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const LoginForm = ({ handleLogin }) => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     const loginSuccessful = await handleLogin({ username, password });
     if (loginSuccessful) {
-      navigate('/');
+      navigate("/");
     }
   };
 
@@ -23,7 +23,9 @@ const LoginForm = ({ handleLogin }) => {
               <h2 className="card-title text-center mb-4">Login</h2>
               <form onSubmit={handleSubmit}>
                 <div className="mb-3">
-                  <label htmlFor="username" className="form-label">Username</label>
+                  <label htmlFor="username" className="form-label">
+                    Username
+                  </label>
                   <input
                     type="text"
                     className="form-control"
@@ -33,7 +35,9 @@ const LoginForm = ({ handleLogin }) => {
                   />
                 </div>
                 <div className="mb-3">
-                  <label htmlFor="password" className="form-label">Password</label>
+                  <label htmlFor="password" className="form-label">
+                    Password
+                  </label>
                   <input
                     type="password"
                     className="form-control"
@@ -42,7 +46,9 @@ const LoginForm = ({ handleLogin }) => {
                     onChange={({ target }) => setPassword(target.value)}
                   />
                 </div>
-                <button type="submit" className="btn btn-primary w-100">Login</button>
+                <button type="submit" className="btn btn-primary w-100">
+                  Login
+                </button>
               </form>
             </div>
           </div>

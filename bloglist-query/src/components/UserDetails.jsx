@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
-import userService from '../services/users';
+import React, { useEffect, useState } from "react";
+import { useParams, Link } from "react-router-dom";
+import userService from "../services/users";
 
 const UserDetails = () => {
   const [user, setUser] = useState(null);
@@ -26,7 +26,10 @@ const UserDetails = () => {
             <ul className="list-group">
               {user.blogs.map((blog) => (
                 <li key={blog.id} className="list-group-item">
-                  <Link to={`/blogs/${blog.id}`} className="text-decoration-none">
+                  <Link
+                    to={`/blogs/${blog.id}`}
+                    className="text-decoration-none"
+                  >
                     {blog.title}
                   </Link>
                 </li>

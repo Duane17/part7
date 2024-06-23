@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import userService from '../services/users';
-import { useUserContext } from '../contexts/UserContext';
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import userService from "../services/users";
+import { useUserContext } from "../contexts/UserContext";
 
 const Users = () => {
   const [users, setUsers] = useState([]);
@@ -16,7 +16,7 @@ const Users = () => {
 
   useEffect(() => {
     if (!user) {
-      navigate('/');
+      navigate("/");
     }
   }, [user, navigate]);
 
@@ -39,8 +39,11 @@ const Users = () => {
             {users.map((user) => (
               <tr key={user.id}>
                 <td>
-                  <Link to={`/users/${user.id}`} className="text-primary text-decoration-none">
-                  {user.name}
+                  <Link
+                    to={`/users/${user.id}`}
+                    className="text-primary text-decoration-none"
+                  >
+                    {user.name}
                   </Link>
                 </td>
                 <td>{user.blogs.length}</td>

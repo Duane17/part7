@@ -10,7 +10,9 @@ const Home = () => {
       <h2 className="mb-4 text-center">Welcome to the Blog App</h2>
       {user === null ? (
         <div>
-          <p className="mb-4 text-center">Please log in to access blogs and users information.</p>
+          <p className="mb-4 text-center">
+            Please log in to access blogs and users information.
+          </p>
           <div className="d-flex justify-content-center">
             <LoginForm handleLogin={login} />
           </div>
@@ -19,7 +21,10 @@ const Home = () => {
         <div className="card">
           <div className="card-body">
             <h5 className="card-title">Welcome back, {user.username}!</h5>
-            <p className="card-text">You can now view and create blogs, as well as see other users' information.</p>
+            <p className="card-text">
+              You can now view and create blogs, as well as see other users'
+              information.
+            </p>
           </div>
         </div>
       )}
